@@ -1,38 +1,23 @@
-import React, { useEffect, useState } from "react";
-
-interface RenderPropsProps {
-    fetchedData: 'albums' | 'posts';
-    userId: string;
-    title: string;
-    render: (props: Array<any>) => JSX.Element;
-}
+import React from "react";
+import { useFetchData } from "../hooks";
+import { Loading } from "../Loading";
+import { Error } from "../Error";
+import { Empty } from "../Empty";
+import { RenderPropsProps } from "./types";
 
 export const RenderProps: React.FC<RenderPropsProps> = ({userId, title, fetchedData, render}) => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [data, setData] = useState<Array<any>>();
-
-    useEffect(() => {
-        setIsLoading(true);
-        const url = `https://jsonplaceholder.typicode.com/${fetchedData}?userId=${userId}`;
-
-        fetch(url)
-            .then((response) => response.json())
-            .then((json) => setData(json))
-            .catch(e => setError(e))
-            .finally(() => setIsLoading(false));
-    }, [fetchedData, userId]);
+    const {data, isLoading, error} = useFetchData({userId, fetchedData});
 
     if (isLoading) {
-        return (<h1>{title}. LOADING....</h1>);
+        return <Loading title={title}/>;
     }
 
     if (error || !data) {
-        return (<h1>{title}. Error....</h1>);
+        return <Error title={title}/>;
     }
 
     if (!data?.length) {
-        return (<h1>Result is empty</h1>)
+        return <Empty/>;
     }
 
     return (

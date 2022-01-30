@@ -1,38 +1,24 @@
-import React, { NamedExoticComponent, useEffect, useState } from "react";
+import React, { NamedExoticComponent } from "react";
 import { CardsProps } from "../Cards";
-
-interface WrapperProps {
-    fetchedData: 'albums' | 'posts';
-    userId: string;
-    title: string;
-}
+import { Loading } from "../Loading";
+import { Error } from "../Error";
+import { Empty } from "../Empty";
+import { useFetchData } from "../hooks";
+import { WrapperProps } from "./types";
 
 export const Wrapper: React.FC<WrapperProps> = ({userId, title, fetchedData, children}) => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [data, setData] = useState<Array<any>>();
-
-    useEffect(() => {
-        setIsLoading(true);
-        const url = `https://jsonplaceholder.typicode.com/${fetchedData}?userId=${userId}`;
-
-        fetch(url)
-            .then((response) => response.json())
-            .then((json) => setData(json))
-            .catch(e => setError(e))
-            .finally(() => setIsLoading(false));
-    }, [fetchedData, userId]);
+    const {data, isLoading, error} = useFetchData({userId, fetchedData});
 
     if (isLoading) {
-        return (<h1>{title}. LOADING....</h1>);
+        return <Loading title={title}/>;
     }
 
     if (error || !data) {
-        return (<h1>{title}. Error....</h1>);
+        return <Error title={title}/>;
     }
 
     if (!data?.length) {
-        return (<h1>Result is empty</h1>)
+        return <Empty/>
     }
 
     if (React.Children.count(children) > 1) {
