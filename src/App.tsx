@@ -1,5 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Albums, AlbumsRenderProps, Cards, Posts, RenderProps, Wrapper } from "./components";
+import './App.css';
 
-export const App = () => (
-    <h1>Hello world</h1>
-);
+const EXAMPLE_TYPE: 'HOC' | 'Wrapper' | 'Render props' = 'Render props';
+
+export const App: React.FC = () => {
+    const [userId, setUserId] = useState('');
+
+    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUserId(event.currentTarget.value);
+    }
+
+    const CommonComponents = (
+        <>
+            <h1>App</h1>
+            <input type='number'
+                   value={userId}
+                   placeholder='Select user id'
+                   onChange={handleOnChange}/>
+        </>
+    );
+
+    if (EXAMPLE_TYPE === 'Render props') {
+        // Render props Example
+        return (
+            <>
+                {CommonComponents}
+                <AlbumsRenderProps userId={userId} title='Albums'/>
+                <RenderProps userId={userId}
+                             title='Posts'
+                             fetchedData='posts'
+                             render={(data) => {
+                                 return <Cards data={data} title='Posts'/>
+                             }}
+                />
+            </>
+        );
+    }
+
+    if (EXAMPLE_TYPE === 'Wrapper') {
+        // Component Wrapper Example
+        return (
+            <>
+                {CommonComponents}
+                <Wrapper userId={userId} title='Albums' fetchedData='albums'>
+                    <Cards/>
+                </Wrapper>
+                <Wrapper userId={userId} title='Posts' fetchedData='posts'>
+                    <Cards/>
+                </Wrapper>
+            </>
+        );
+    }
+
+    if (EXAMPLE_TYPE === 'HOC') {
+        // Higher-Order Component Example
+        return (
+            <>
+                {CommonComponents}
+                <Albums userId={userId} title='Albums'/>
+                <Posts userId={userId} title='Posts'/>
+            </>
+        );
+    }
+
+    return null;
+};
