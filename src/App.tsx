@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Albums, AlbumsRenderProps, Cards, Posts, RenderProps, Wrapper } from "./components";
+import { Cards, HOC, RenderProps, WithRenderProps, Wrapper } from "./components";
 import './App.css';
 
 const EXAMPLE_TYPE: 'HOC' | 'Wrapper' | 'Render props' = 'Render props';
 
 export const App: React.FC = () => {
-    const [userId, setUserId] = useState('');
+    const [ userId, setUserId ] = useState('');
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUserId(event.currentTarget.value);
@@ -26,7 +26,7 @@ export const App: React.FC = () => {
         return (
             <>
                 {CommonComponents}
-                <AlbumsRenderProps userId={userId} title='Albums'/>
+                <WithRenderProps.Albums userId={userId} title='Albums'/>
                 <RenderProps userId={userId}
                              title='Posts'
                              fetchedData='posts'
@@ -58,8 +58,8 @@ export const App: React.FC = () => {
         return (
             <>
                 {CommonComponents}
-                <Albums userId={userId} title='Albums'/>
-                <Posts userId={userId} title='Posts'/>
+                <HOC.Albums userId={userId} title='Albums'/>
+                <HOC.Posts userId={userId} title='Posts'/>
             </>
         );
     }

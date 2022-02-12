@@ -5,7 +5,7 @@ export interface CardsProps {
     title?: string;
 }
 
-export const Cards: FC<CardsProps> = ({data, title}) => {
+export const Cards: FC<CardsProps> = ({ data, title }) => {
     if (!data && !title) {
         return (
             <h1>Forgot to Wrap?</h1>

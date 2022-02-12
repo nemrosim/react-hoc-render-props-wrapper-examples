@@ -1,25 +1,29 @@
 import React, { NamedExoticComponent } from "react";
-import { CardsProps } from "../Cards";
-import { Loading } from "../Loading";
-import { Error } from "../Error";
-import { Empty } from "../Empty";
-import { useFetchData } from "../hooks";
-import { WrapperProps } from "./types";
+import { State } from "../../State";
+import { useFetchData, UseFetchDataProps } from "../../hooks";
+import { CardsProps } from "../../Cards";
 
-export const Wrapper: React.FC<WrapperProps> = ({userId, title, fetchedData, children}) => {
-    const {data, isLoading, error} = useFetchData({userId, fetchedData});
+export interface WrapperProps extends Pick<UseFetchDataProps, 'fetchedData'> {
+    userId: string;
+    title: string;
+}
 
+export const Wrapper: React.FC<WrapperProps> = ({ userId, title, fetchedData, children }) => {
+    const { data, isLoading, error } = useFetchData({ userId, fetchedData });
+
+    // ============  COMMON  ===============
     if (isLoading) {
-        return <Loading title={title}/>;
+        return <State.Loading title={title}/>;
     }
 
     if (error || !data) {
-        return <Error title={title}/>;
+        return <State.Error title={title}/>;
     }
 
     if (!data?.length) {
-        return <Empty/>
+        return <State.Empty/>
     }
+    // =====================================
 
     if (React.Children.count(children) > 1) {
         return <h1>Error! More than 1 child!</h1>
