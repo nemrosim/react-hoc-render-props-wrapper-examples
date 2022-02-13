@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#000000"/>
+    <meta property="title"
+          content="React HOC, Component Wrapping and Render Props page | by Artem Diashkin | Jan, 2022 | Netlify"/>
+    <meta name="description" content="This page is an example of implementing Higher-Order Component pattern"/>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <!--    OG  -->
+    <!--    The type of your content, e.g., website, article, video.movie etc.  -->
+    <meta property="og:type" content="website"/>
+    <!--    The title of your content. You should not include your brand name or the domain.    -->
+    <meta property="og:title"
+          content="React HOC, Component Wrapping and Render Props page."/>
+    <!--    A one to two sentence description of your content.  -->
+    <meta property="og:description" content="This page is an example of implementing Higher-Order Component pattern"/>
+    <!--    An image URL which should represent your content.   -->
+    <meta property="og:image"
+          content="https://cdn-images-1.medium.com/max/1600/0*LrRO23Qzo_Juma8N.jpeg"/>
+    <!--    The canonical URL of your content.  -->
+    <meta property=”og:url” content=”https://react-hoc-examples-7e2102.netlify.app”/>
+    <!--    The locales this content is available in.   -->
+    <meta property=”og:locale” content=””/>
+    <!--    The web site name or brand name.    -->
+    <meta property=”og:site_name” content=””/>
+    <!--    A Facebook App ID that identifies your website to Facebook. You can analyze the traffic in Facebook. -->
+    <meta property=”fb:app_id” content=””/>
+    <!------------------------------------>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <!--    TWITTER     -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@Artem_Diashkin"/>
+    <meta name="twitter:title" content="(Twitter) React HOC, Component Wrapping and Render Props page"/>
+    <meta name="twitter:description" content="Twitter description"/>
+    <meta name="twitter:image:src" content="https://cdn-images-1.medium.com/max/1600/0*LrRO23Qzo_Juma8N.jpeg"/>
+    <meta name="twitter:creator" content="@Artem_Diashkin">
+    <!--------------------------------->
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png"/>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
+    <title>React HOC, Component Wrapping and Render Props page.</title>
+</head>
+<body>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+</body>
 </html>
